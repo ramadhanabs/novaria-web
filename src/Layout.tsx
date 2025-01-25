@@ -13,7 +13,7 @@ export const CustomRainbowContext = ({
   return (
     <RainbowKitProvider
       theme={darkTheme({
-        accentColor: "#FF0000",
+        accentColor: "#17E3C2",
         accentColorForeground: "#000000",
         fontStack: "system",
       })}

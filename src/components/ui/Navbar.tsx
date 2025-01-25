@@ -1,7 +1,9 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 export const Navbar = () => {
   return (
     <nav className="h-[100px] fixed w-full z-10 flex items-center bg-black text-white">
-      <div className="container mx-auto">
+      <div className="container mx-auto flex justify-between items-center px-4">
         <ul className="flex space-x-6">
           <li>
             <a href="/" className="text-white hover:text-[#17E3C2] font-bold">
@@ -17,6 +19,9 @@ export const Navbar = () => {
             </a>
           </li>
         </ul>
+        <div>
+          <ConnectButton />
+        </div>
       </div>
     </nav>
   );
