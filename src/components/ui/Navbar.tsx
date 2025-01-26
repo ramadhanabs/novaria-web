@@ -6,14 +6,14 @@ export const Navbar = () => {
       <div className="container mx-auto flex justify-between items-center px-4">
         <ul className="flex space-x-6">
           <li>
-            <a href="/" className="text-white hover:text-[#17E3C2] font-bold">
+            <a href="/" className="text-white hover:text-main font-bold">
               Home
             </a>
           </li>
           <li>
             <a
               href="/contact"
-              className="text-white hover:text-[#17E3C2] font-bold"
+              className="text-white hover:text-main font-bold"
             >
               Deposit
             </a>

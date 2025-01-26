@@ -13,8 +13,8 @@ export const CustomRainbowContext = ({
   return (
     <RainbowKitProvider
       theme={darkTheme({
-        accentColor: "#17E3C2",
-        accentColorForeground: "#000000",
+        accentColor: "var(--color-main)",
+        accentColorForeground: "var(--color-black)",
         fontStack: "system",
       })}
     >
@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <CustomRainbowContext>
           <Navbar />
           <main className="bg-gradient-to-b from-black to-[#090E18] relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-            <div className="absolute w-[300px] bottom-0 h-[200px] rounded-full bg-[#17E3C2] blur-[333px]"></div>
+            <div className="absolute w-[300px] bottom-0 h-[200px] rounded-full bg-main blur-[333px]"></div>
             {children}
           </main>
         </CustomRainbowContext>
