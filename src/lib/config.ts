@@ -1,8 +1,10 @@
-import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import { arbitrum, mainnet, sepolia } from "wagmi/chains";
+import { createConfig, http } from "wagmi";
+import { arbitrum, arbitrumSepolia } from "wagmi/chains";
 
-export const config = getDefaultConfig({
-  appName: "My RainbowKit App",
-  projectId: "398de4fb67cc292e38a129c1cfabf901",
-  chains: [sepolia, arbitrum, mainnet],
-});
+export const config = createConfig({
+  chains: [arbitrumSepolia, arbitrum],
+  transports: {
+    [arbitrumSepolia.id]: http(),
+    [arbitrum.id]: http(),
+  },
+})

@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Navbar />
           <main className="bg-gradient-to-b from-black to-[#090E18] relative w-full min-h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute w-[300px] bottom-0 h-[200px] rounded-full bg-main blur-[333px]"></div>
-            {children}
+            <div className="text-blue-100">{children}</div>
           </main>
         </CustomRainbowContext>
       </QueryClientProvider>
