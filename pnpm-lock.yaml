@@ -20,6 +20,9 @@ importers:
       '@wagmi/core':
         specifier: ^2.16.3
         version: 2.16.3(@tanstack/query-core@5.64.2)(@types/react@18.3.18)(react@18.3.1)(typescript@5.6.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.22.14(bufferutil@4.0.9)(typescript@5.6.3)(utf-8-validate@5.0.10))
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       postcss:
         specifier: ^8.5.1
         version: 8.5.1
