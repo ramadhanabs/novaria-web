@@ -1,4 +1,6 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { NavLink } from "react-router-dom";
+import clsx from "clsx";
 
 export const Navbar = () => {
   return (
@@ -6,14 +8,46 @@ export const Navbar = () => {
       <div className="container mx-auto flex lg:justify-between justify-end items-center px-4">
         <ul className="lg:flex hidden space-x-6">
           <li>
-            <a href="/" className="text-white hover:text-main font-bold">
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                clsx(
+                  " hover:text-main font-bold",
+                  isActive ? "text-main" : "text-white"
+                )
+              }
+            >
               Home
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/contact" className="text-white hover:text-main font-bold">
+            <NavLink
+              to="/deposit"
+              end
+              className={({ isActive }) =>
+                clsx(
+                  " hover:text-main font-bold",
+                  isActive ? "text-main" : "text-white"
+                )
+              }
+            >
               Deposit
-            </a>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/tokenize"
+              end
+              className={({ isActive }) =>
+                clsx(
+                  " hover:text-main font-bold",
+                  isActive ? "text-main" : "text-white"
+                )
+              }
+            >
+              Tokenize
+            </NavLink>
           </li>
         </ul>
         <div>

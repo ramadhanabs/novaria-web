@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "@/Layout";
 import { Home } from "@/pages/Home";
-import { Swap } from "./pages/Swap";
+import { Deposit } from "./pages/Deposit";
+import { Tokenize } from "./pages/Tokenize";
 
 function App() {
   return (
@@ -9,7 +10,8 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/swap" element={<Swap />} />
+          <Route path="/deposit" element={<Deposit />} />
+          <Route path="/tokenize" element={<Tokenize />} />
         </Routes>
       </Layout>
     </>
