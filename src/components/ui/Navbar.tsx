@@ -23,6 +23,20 @@ export const Navbar = () => {
           </li>
           <li>
             <NavLink
+              to="/mint"
+              end
+              className={({ isActive }) =>
+                clsx(
+                  " hover:text-main font-bold",
+                  isActive ? "text-main" : "text-white"
+                )
+              }
+            >
+              Mint
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/deposit"
               end
               className={({ isActive }) =>
@@ -37,7 +51,7 @@ export const Navbar = () => {
           </li>
           <li>
             <NavLink
-              to="/tokenize"
+              to="/swap"
               end
               className={({ isActive }) =>
                 clsx(
@@ -46,7 +60,7 @@ export const Navbar = () => {
                 )
               }
             >
-              Tokenize
+              Swap
             </NavLink>
           </li>
         </ul>
