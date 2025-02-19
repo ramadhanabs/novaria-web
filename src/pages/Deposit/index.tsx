@@ -2,17 +2,11 @@ import ArrowSwapIcon from "@/components/icon/ArrowSwapIcon";
 import ClockIcon from "@/components/icon/ClockIcon";
 import FuelIcon from "@/components/icon/FuelIcon";
 import { Input, NovariaTokenLogo } from "@/components/ui/Input";
-import {
-  useAccount,
-  useWaitForTransactionReceipt,
-  useWriteContract,
-} from "wagmi";
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import mockErc20 from "@/data/mockERC20.json";
 import mockVault from "@/data/mockVault.json";
 
 export const Deposit = () => {
-  const { address } = useAccount();
-
   const { data: hash, isPending, writeContract } = useWriteContract();
 
   const { isLoading, isSuccess } = useWaitForTransactionReceipt({
@@ -22,7 +16,7 @@ export const Deposit = () => {
   const handleDeposit = () => {
     writeContract({
       abi: mockVault,
-      address: "0x169059C8c8955007E9264A6D11500a67FC30ef2d",
+      address: "0xB6Df7f56e1dFF4073FD557500719A37232fC3337",
       functionName: "deposit",
       args: [BigInt(100)],
     });
@@ -31,9 +25,9 @@ export const Deposit = () => {
   const handleApprove = () => {
     writeContract({
       abi: mockErc20,
-      address: "0x29990418BD79E3bD240e9BFB18544a6728a390D7",
+      address: "0xfc7Ca268cc901753f44686834dA0A038eB61BAdd",
       functionName: "approve",
-      args: ["0x169059C8c8955007E9264A6D11500a67FC30ef2d", BigInt(100)],
+      args: ["0xB6Df7f56e1dFF4073FD557500719A37232fC3337", BigInt(100)],
     });
   };
 

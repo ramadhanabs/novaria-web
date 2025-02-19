@@ -22,7 +22,7 @@ export const Mint = () => {
   const handleMint = () => {
     writeContract({
       abi: mockVault,
-      address: "0x29990418BD79E3bD240e9BFB18544a6728a390D7",
+      address: "0xfc7Ca268cc901753f44686834dA0A038eB61BAdd",
       functionName: "deposit",
       args: [BigInt(100)],
     });
@@ -42,7 +42,7 @@ export const Mint = () => {
       abi: mockErc20,
       address: "0xf1CeAFabFe0c541fe45Bcd2Ed391e8BE4105b66A",
       functionName: "approve",
-      args: ["0x29990418BD79E3bD240e9BFB18544a6728a390D7", BigInt(100)],
+      args: ["0xfc7Ca268cc901753f44686834dA0A038eB61BAdd", BigInt(100)],
     });
   };
 
