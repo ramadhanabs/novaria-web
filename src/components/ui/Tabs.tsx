@@ -1,16 +1,18 @@
-import { useState } from "react"
+import { Tab } from "@/types";
+import { useState } from "react";
 
-type TabsProps<T extends string> = {
-  tabs: T[]
-  onChangeTabs: (value: T) => void
-}
+type TabsProps = {
+  tabs: Tab[];
+  onChangeTabs: (value: string) => void;
+};
 
-const Tabs = <T extends string>({ tabs, onChangeTabs }: TabsProps<T>) => {
-  const [activeTab, setActiveTab] = useState(tabs[0])
-  const onClickTab = (value: T) => {
-    setActiveTab(value)
-    onChangeTabs(value)
-  }
+const Tabs = ({ tabs, onChangeTabs }: TabsProps) => {
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  const onClickTab = (value: Tab) => {
+    setActiveTab(value);
+    onChangeTabs(value);
+  };
 
   return (
     <div className="bg-turquoise-800 font-bold rounded-xl flex gap-1 overflow-hidden w-full">
@@ -23,13 +25,14 @@ const Tabs = <T extends string>({ tabs, onChangeTabs }: TabsProps<T>) => {
               : ""
           }`}
           onClick={() => {
-            onClickTab(tab)
-          }}>
+            onClickTab(tab);
+          }}
+        >
           {tab}
         </button>
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default Tabs
+export default Tabs;

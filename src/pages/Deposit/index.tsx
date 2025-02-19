@@ -1,9 +1,42 @@
-import ArrowSwapIcon from "@/components/icon/ArrowSwapIcon"
-import ClockIcon from "@/components/icon/ClockIcon"
-import FuelIcon from "@/components/icon/FuelIcon"
-import { Input, NovariaTokenLogo } from "@/components/ui/Input"
+import ArrowSwapIcon from "@/components/icon/ArrowSwapIcon";
+import ClockIcon from "@/components/icon/ClockIcon";
+import FuelIcon from "@/components/icon/FuelIcon";
+import { Input, NovariaTokenLogo } from "@/components/ui/Input";
+import {
+  useAccount,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
+import mockErc20 from "@/data/mockERC20.json";
+import mockVault from "@/data/mockVault.json";
 
 export const Deposit = () => {
+  const { address } = useAccount();
+
+  const { data: hash, isPending, writeContract } = useWriteContract();
+
+  const { isLoading, isSuccess } = useWaitForTransactionReceipt({
+    hash: hash,
+  });
+
+  const handleDeposit = () => {
+    writeContract({
+      abi: mockVault,
+      address: "0x169059C8c8955007E9264A6D11500a67FC30ef2d",
+      functionName: "deposit",
+      args: [BigInt(100)],
+    });
+  };
+
+  const handleApprove = () => {
+    writeContract({
+      abi: mockErc20,
+      address: "0x29990418BD79E3bD240e9BFB18544a6728a390D7",
+      functionName: "approve",
+      args: ["0x169059C8c8955007E9264A6D11500a67FC30ef2d", BigInt(100)],
+    });
+  };
+
   return (
     <div className="rounded-3xl p-5 flex flex-col items-center justify-center mt-12 bg-zinc-900">
       <div>
@@ -43,9 +76,20 @@ export const Deposit = () => {
           <p>0.001</p>
         </div>
       </div>
-      <button className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold">
+      <button
+        className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold"
+        onClick={handleApprove}
+      >
+        {isPending ? "loading" : "Approval"}
+      </button>
+      {` `}
+      <button
+        className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold"
+        onClick={handleDeposit}
+      >
         Deposit
       </button>
+      {isLoading ? "loading transaction" : ""}
     </div>
-  )
-}
+  );
+};

@@ -1,9 +1,51 @@
-import ArrowDownIcon from "@/components/icon/ArrowDownIcon"
-import ClockIcon from "@/components/icon/ClockIcon"
-import FuelIcon from "@/components/icon/FuelIcon"
-import { Input, NovariaTokenLogo, WBTCTokenLogo } from "@/components/ui/Input"
+import ArrowDownIcon from "@/components/icon/ArrowDownIcon";
+import ClockIcon from "@/components/icon/ClockIcon";
+import FuelIcon from "@/components/icon/FuelIcon";
+import { Input, NovariaTokenLogo, WBTCTokenLogo } from "@/components/ui/Input";
+import mockErc20 from "@/data/mockERC20.json";
+import mockVault from "@/data/mockVault.json";
+import {
+  useAccount,
+  useWriteContract,
+  useWaitForTransactionReceipt,
+} from "wagmi";
 
 export const Mint = () => {
+  const { address } = useAccount();
+
+  const { data: hash, isPending, writeContract } = useWriteContract();
+
+  const { isLoading } = useWaitForTransactionReceipt({
+    hash: hash,
+  });
+
+  const handleMint = () => {
+    writeContract({
+      abi: mockVault,
+      address: "0x29990418BD79E3bD240e9BFB18544a6728a390D7",
+      functionName: "deposit",
+      args: [BigInt(100)],
+    });
+  };
+
+  const handleFaucet = () => {
+    writeContract({
+      abi: mockErc20,
+      address: "0xf1CeAFabFe0c541fe45Bcd2Ed391e8BE4105b66A",
+      functionName: "mint",
+      args: [address, BigInt(1000e18)],
+    });
+  };
+
+  const handleApprove = () => {
+    writeContract({
+      abi: mockErc20,
+      address: "0xf1CeAFabFe0c541fe45Bcd2Ed391e8BE4105b66A",
+      functionName: "approve",
+      args: ["0x29990418BD79E3bD240e9BFB18544a6728a390D7", BigInt(100)],
+    });
+  };
+
   return (
     <div className="rounded-3xl p-5 flex flex-col items-center justify-center mt-12 bg-zinc-900">
       <div>
@@ -43,9 +85,27 @@ export const Mint = () => {
           <p>0.001</p>
         </div>
       </div>
-      <button className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold">
-        Mint
+      <button
+        disabled={isPending}
+        className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold"
+        onClick={handleApprove}
+      >
+        {isPending ? "loading" : "Approve"}
       </button>
+      {` `}
+      <button
+        className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold"
+        onClick={handleMint}
+      >
+        {isPending ? "loading mint" : "Mint"}
+      </button>
+      <button
+        className="mt-4 w-full bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold"
+        onClick={handleFaucet}
+      >
+        Faucet
+      </button>
+      {isLoading ? "loading transaction" : ""}
     </div>
-  )
-}
+  );
+};
