@@ -1,6 +1,8 @@
+import { PRINCIPLE_TOKEN_ADDRESS, YIELD_TOKEN_ADDRESS } from "@/utils/constants"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import clsx from "clsx"
-import React, { ButtonHTMLAttributes } from "react"
+import { useAccount, useReadContract } from "wagmi"
+import mockErc20 from "@/data/mockERC20.json"
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
@@ -15,17 +17,32 @@ const CustomButton = (props: ButtonProps) => {
         className={clsx(
           className,
           "rounded-full bg-teal-800 text-teal-100 group-hover:bg-transparent px-5 py-1.5 text-center relative overflow-hidden transition-colors duration-300 cursor-pointer group-hover:text-zinc-800"
-        )}>
+        )}
+      >
         {children}
         <span
           aria-hidden="true"
-          className="blur-sm absolute inset-0 z-[-1] bg-gradient-to-r from-teal-500 to-teal-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-400"></span>
+          className="blur-sm absolute inset-0 z-[-1] bg-gradient-to-r from-teal-500 to-teal-600 -translate-x-full group-hover:translate-x-0 transition-transform duration-400"
+        ></span>
       </button>
     </div>
   )
 }
 
 export const ConnectWalletButton = () => {
+  const { address } = useAccount()
+  const { data: ptBalance } = useReadContract({
+    abi: mockErc20,
+    address: PRINCIPLE_TOKEN_ADDRESS,
+    functionName: "balanceOf",
+    args: [address],
+  })
+  const { data: ytBalance } = useReadContract({
+    abi: mockErc20,
+    address: YIELD_TOKEN_ADDRESS,
+    functionName: "balanceOf",
+    args: [address],
+  })
   return (
     <ConnectButton.Custom>
       {({
@@ -54,7 +71,8 @@ export const ConnectWalletButton = () => {
                 pointerEvents: "none",
                 userSelect: "none",
               },
-            })}>
+            })}
+          >
             {authenticationStatus == "loading" && "Loading..."}
             {(() => {
               if (!connected) {
@@ -74,8 +92,15 @@ export const ConnectWalletButton = () => {
               return (
                 <div className="flex gap-4 items-center text-sm">
                   <button
+                    // onClick={openChainModal}
+                    className="relative bg-zinc-800 text-teal-200 cursor-pointer font-semibold flex items-center gap-2 rounded-full border border-teal-600 px-4 py-2"
+                  >
+                    {`PT ${Number(ptBalance)} / YT ${Number(ytBalance)}`}
+                  </button>
+                  {/* <button
                     onClick={openChainModal}
-                    className="relative bg-zinc-800 text-teal-200 cursor-pointer font-semibold flex items-center gap-2 rounded-full border border-teal-600 px-4 py-2">
+                    className="relative bg-zinc-800 text-teal-200 cursor-pointer font-semibold flex items-center gap-2 rounded-full border border-teal-600 px-4 py-2"
+                  >
                     {chain.hasIcon && (
                       <div className="size-5 overflow-hidden rounded-full">
                         {chain.iconUrl && (
@@ -88,18 +113,14 @@ export const ConnectWalletButton = () => {
                       </div>
                     )}
                     {chain.name}
-                  </button>
+                  </button> */}
 
                   <div className="bg-zinc-800 flex gap-2 z-[20] items-center p-1 border border-teal-600 rounded-full">
                     <span className="text-white font-semibold ml-2">
-                      {account.displayBalance
-                        ? ` ${account.displayBalance}`
-                        : "No Balance"}
+                      {account.displayBalance ? ` ${account.displayBalance}` : "No Balance"}
                     </span>
 
-                    <CustomButton
-                      className="bg-red-500"
-                      onClick={openAccountModal}>
+                    <CustomButton className="bg-red-500" onClick={openAccountModal}>
                       {account.displayName}
                     </CustomButton>
                   </div>

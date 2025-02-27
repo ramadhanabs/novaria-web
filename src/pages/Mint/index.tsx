@@ -70,9 +70,7 @@ export const Mint = () => {
       })
   }
 
-  useEffect(() => {
-    console.log({ simulateResult })
-  }, [simulateResult])
+  useEffect(() => {}, [simulateResult])
 
   return (
     <>
