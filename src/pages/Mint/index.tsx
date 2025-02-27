@@ -76,7 +76,7 @@ export const Mint = () => {
     <>
       {(isPendingTransaction || isLoading) && <Preloader />}
 
-      <div className="rounded-3xl p-5 flex flex-col gap-6 items-center justify-center mt-12 bg-zinc-900 w-[400px] mx-auto">
+      <div className="rounded-3xl p-5 flex flex-col gap-6 items-center justify-center mt-12 bg-zinc-900 w-[400px] mx-auto border border-main/10">
         <div className="flex flex-col gap-1">
           <div className="text-start w-full text-lg font-semibold">Input</div>
           <Input
