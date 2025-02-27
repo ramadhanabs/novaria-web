@@ -29,8 +29,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <QueryClientProvider client={queryClient}>
         <CustomRainbowContext>
           <Navbar />
-          <main className="bg-gradient-to-t from-zinc-950 from-60% to-teal-950 relative w-full min-h-screen flex items-center justify-center overflow-hidden">
-            <div className="relative  text-blue-100">{children}</div>
+          <main className="bg-gradient-to-t from-zinc-950 from-60% to-teal-950 relative w-screen min-h-screen">
+            <div className="relative z-10 pt-[100px]  text-blue-100 w-full max-w-[1440px] mx-auto">{children}</div>
             <div className="absolute w-[300px] bottom-0 h-[200px] rounded-full bg-main blur-[200px]"></div>
             <div className="absolute w-1/3 left-0 top-0 h-1/3 transform translate-x-0.5 translate-y-0.5 rounded-full bg-teal-950 blur-[200px]"></div>
           </main>

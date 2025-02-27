@@ -33,20 +33,8 @@ export const Deposit = () => {
   }
 
   return (
-    <div className=" max-h-screen flex gap-12 h-screen w-screen pt-20 px-8">
-      <div className="w-1/2">
-        <div className="w-80 ">
-          <h1 className="text-xl font font-semibold tracking-wide ">Markets</h1>
-          <p className="text-sm mt-2 text-white">
-            Exit anytime at market price. All yield is streamed to YT until
-            maturity. PT can be redeemed for the underlying asset after
-            maturity.
-          </p>
-        </div>
-
-        <Table />
-      </div>
-
+    <div className="flex flex-col gap-4 w-full px-8">
+      {/* 
       <div className="w-1/2 ">
         <div className="rounded-3xl p-5 flex flex-col items-center justify-center mt-12 bg-zinc-900 mx-auto w-[400px]">
           <div>
@@ -99,6 +87,21 @@ export const Deposit = () => {
           </button>
           {isLoading ? "loading transaction" : ""}
         </div>
+      </div> */}
+      <div className="flex flex-col gap-2 align-center text-white mt-10">
+        <p className="text-2xl font-semibold">Make Your Shares Work as PT and YT</p>
+        <div>
+          <p className="text-xs text-white/50">
+            Find stability in a world of fluctuating yields—no lock-up required.
+          </p>
+          <p className="text-xs text-white/50">
+            Go long on yield or hedge your exposure—the choice is yours.
+          </p>
+        </div>
+      </div>
+
+      <div className="w-full">
+        <Table />
       </div>
     </div>
   )
@@ -106,17 +109,6 @@ export const Deposit = () => {
 
 export const Table = () => {
   const items = [
-    {
-      id: "susde",
-      label: "sUSDe",
-      imgUrl:
-        "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/1fc3683f-3f25-44f0-8c79-55f7eedd53be.svg",
-      date: "2025 Mar 02",
-      liquidity: "$29.43M",
-      leverage: "20x",
-      fundingRate: "14.5%",
-      fixedFundingRate: "20%",
-    },
     {
       id: "lbtc",
       label: "LBTC (Corn)",
@@ -128,48 +120,21 @@ export const Table = () => {
       fundingRate: "14.5%",
       fixedFundingRate: "20%",
     },
-    {
-      id: "lbtc2",
-      label: "LBTC (Corn)",
-      imgUrl:
-        "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/2dae1fc4-645b-4278-9a45-e3708f9463da.svg",
-      date: "2024 Dec 31",
-      liquidity: "$9.1M",
-      leverage: "20x",
-      fundingRate: "14.5%",
-      fixedFundingRate: "20%",
-    },
-    {
-      id: "lbtc3",
-      label: "LBTC (Corn)",
-      imgUrl:
-        "https://storage.googleapis.com/prod-pendle-bucket-a/images/uploads/2dae1fc4-645b-4278-9a45-e3708f9463da.svg",
-      date: "2024 Dec 31",
-      liquidity: "$9.1M",
-      leverage: "20x",
-      fundingRate: "14.5%",
-      fixedFundingRate: "20%",
-    },
   ]
   return (
-    <table className="table-auto w-full mt-12">
+    <table className="table-auto w-full">
       <thead>
         <tr className="text-sm text-teal-500 tracking-wider">
           <th className="py-2 px-8 pl-0 font-light min-w-fit whitespace-nowrap text-left">
             Market
           </th>
-          <th className="py-2 px-8 font-light min-w-fit whitespace-nowrap text-right">
-            Leverage
-          </th>
+          <th className="py-2 px-8 font-light min-w-fit whitespace-nowrap text-right">Leverage</th>
           <th className="py-2 px-8 font-light min-w-fit whitespace-nowrap text-right">
             Funding Rate
           </th>
           <th className="py-2 px-8 font-light min-w-fit whitespace-nowrap text-right">
             Fixed Funding Rate
           </th>
-          {/* <th className="py-2 px-8 font-light min-w-fit whitespace-nowrap text-right">
-                  Buy / Sell
-                </th> */}
         </tr>
       </thead>
       <tbody>
@@ -179,11 +144,7 @@ export const Table = () => {
               <td className="relative z-1 h-12 w-full px-8 pl-0 py-3">
                 <div className="cursor-pointer">
                   <div className="relative flex items-center gap-4">
-                    <img
-                      src={item.imgUrl}
-                      alt="LBTC (Corn)"
-                      className="size-9"
-                    />
+                    <img src={item.imgUrl} alt="LBTC (Corn)" className="size-9" />
                     <div className="flex flex-col">
                       <span className="relative leading-tight group-hover:font-semibold">
                         <span className="absolute blur inset-0 opacity-0 group-hover:opacity-100">
@@ -191,9 +152,7 @@ export const Table = () => {
                         </span>
                         {item.label}
                       </span>
-                      <span className="text-sm font-light leading-tight">
-                        {item.date}
-                      </span>
+                      <span className="text-sm font-light leading-tight">{item.date}</span>
                     </div>
                   </div>
                 </div>
