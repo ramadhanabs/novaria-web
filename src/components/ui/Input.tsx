@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react"
+import { forwardRef } from "react"
 import WBTCIcon from "@/assets/wbtc_logo.svg"
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
@@ -9,11 +9,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { className, icon, ...restProps } = props
   return (
     <div
-      {...restProps}
+      // {...restProps}
       ref={ref}
-      className={`flex w-full gap-2 border-2 p-2 rounded-xl focus-within:ring-2 focus-within:ring-offset-0 ${className}`}>
+      className={`flex w-full gap-2 border-2 p-2 rounded-xl focus-within:ring-2 focus-within:ring-offset-0 ${className}`}
+    >
       {icon}
       <input
+        {...restProps}
         className="outline-none w-full text-end text-xl px-3 focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         placeholder="0.00"
       />
@@ -42,7 +44,7 @@ export const WBTCTokenLogo = () => {
         <img src={WBTCIcon} />
       </span>
 
-      <span className="text-lg text-white">  WBTC</span>
+      <span className="text-lg text-white"> WBTC</span>
     </div>
   )
 }
