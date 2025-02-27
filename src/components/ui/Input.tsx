@@ -43,11 +43,7 @@ export const WBTCTokenLogo = () => {
         <img src={WBTCIcon} />
       </span>
 
-<<<<<<< HEAD
-      <span className="text-lg text-white"> WBTC</span>
-=======
       <span className="text-white"> WBTC</span>
->>>>>>> a7541aff422f769b99d7a48ff1f85df662718d8e
     </div>
   )
 }

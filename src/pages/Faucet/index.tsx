@@ -28,7 +28,7 @@ const Faucet = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 items-center">
         <div className="rounded-3xl p-5 flex flex-col items-center justify-center mt-12 bg-zinc-900 gap-4 w-[400px] border border-main/10">
           <div className="flex flex-col gap-2 align-center text-center">
             <p className="text-2xl font-semibold">Mock WBTC Faucet</p>

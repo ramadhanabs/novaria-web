@@ -2,7 +2,7 @@ export const Home = () => {
   return (
     <>
       <div className="h-screen flex flex-col justify-center px-8">
-        <div className="mt-32 flex flex-col justify-center items-center md:w-[800px]">
+        <div className="mt-32 flex flex-col justify-center items-center md:w-[800px] mx-auto">
           <h1 className="text-4xl leading-tight text-blue-100 md:text-6xl md:text-center hover:animate-fadez">
             Financial Stability Starts with{" "}
             <span className="font-semibold bg-gradient-to-r from-blue-400 via-teal-500 via-60% to-blue-600 text-transparent bg-clip-text">

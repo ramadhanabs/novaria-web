@@ -6,7 +6,6 @@ const navbarItems = [
   { label: "Home", path: "/" },
   { label: "Mint", path: "/mint" },
   { label: "Deposit", path: "/deposit" },
-  { label: "Swap", path: "/swap" },
   { label: "Faucet", path: "/faucet" },
 ]
 

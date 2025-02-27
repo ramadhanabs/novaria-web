@@ -18,7 +18,7 @@ import {
 
 export const Mint = () => {
   const [mintAmount, setMintAmount] = useState<number>(0)
-  
+
   const { address } = useAccount()
 
   const { data: mockBalance } = useReadContract({
@@ -78,12 +78,9 @@ export const Mint = () => {
     <>
       {(isPendingTransaction || isLoading) && <Preloader />}
 
-      <>Your Balance {Number(mockBalance) / 1e18 - mintAmount}</>
-      <div>Mint Amount {mintAmount}</div>
-
-      <div className="rounded-3xl p-5 flex flex-col items-center justify-center mt-12 bg-zinc-900">
-        <div>
-          <div className="text-start w-full text-lg font-semibold mb-2">Input</div>
+      <div className="rounded-3xl p-5 flex flex-col gap-6 items-center justify-center mt-12 bg-zinc-900 w-[400px] mx-auto">
+        <div className="flex flex-col gap-1">
+          <div className="text-start w-full text-lg font-semibold">Input</div>
           <Input
             icon={<WBTCTokenLogo />}
             type="number"
@@ -98,9 +95,12 @@ export const Mint = () => {
               setMintAmount(Number(value))
             }}
           />
+          <p className="text-xs text-white/50">
+            Your Balance {Number(mockBalance) / 1e18 - mintAmount}
+          </p>
         </div>
 
-        <div className="bg-turquoise-100 text-black rounded-full p-2 mt-6 mb-2">
+        <div className="bg-turquoise-100 text-black rounded-full p-2">
           <ArrowDownIcon />
         </div>
 
@@ -109,29 +109,29 @@ export const Mint = () => {
           <Input icon={<NovariaTokenLogo />} type="number" value={mintAmount / 10} />
         </div>
 
-        <div className="w-full mt-6">
+        <div className="w-full">
           <div className="p-2 w-full rounded-2xl flex items-center justify-between">
-            <span className="flex gap-2">
+            <span className="flex gap-2 text-white/50">
               <ClockIcon />
-              <p>Est. Processing Time</p>
+              <p className="text-sm">Est. Processing Time</p>
             </span>
 
-            <p>~5 s</p>
+            <p className="text-sm">~5 s</p>
           </div>
           <div className="p-2 w-full rounded-2xl flex items-center justify-between">
-            <span className="flex gap-2">
+            <span className="flex gap-2 text-white/50">
               <FuelIcon />
-              <p>Network Fee</p>
+              <p className="text-sm">Network Fee</p>
             </span>
 
-            <p>0.001</p>
+            <p className="text-sm">0.001</p>
           </div>
         </div>
 
         <button
-          disabled={mintAmount < 1}
-          className="mt-4 w-full disabled:bg-red-500 bg-main hover:bg-main/90 text-black py-2 rounded-lg lg:text-lg text-md font-bold"
+          className="w-full border border-main/50 bg-main/10 px-4 py-2 rounded-lg text-sm text-white cursor-pointer hover:border-main hover:bg-main/40 transition-all disabled:opacity-50"
           onClick={handleMintAndApprove}
+          disabled={mintAmount < 1}
         >
           Mint
         </button>
