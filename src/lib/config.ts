@@ -1,5 +1,6 @@
-import { createConfig, http } from "wagmi";
-import { type Chain } from "viem";
+import { createConfig, http } from "wagmi"
+import { type Chain } from "viem"
+import { mainnet, sepolia } from "viem/chains"
 
 export const rise = {
   id: 11155931,
@@ -18,11 +19,13 @@ export const rise = {
       url: "https://testnet-explorer.riselabs.xyz",
     },
   },
-} as const satisfies Chain;
+} as const satisfies Chain
 
 export const config = createConfig({
-  chains: [rise],
+  chains: [rise, mainnet, sepolia],
   transports: {
     [rise.id]: http(),
+    [mainnet.id]: http("https://mainnet.example.com"),
+    [sepolia.id]: http("https://sepolia.example.com"),
   },
-});
+})

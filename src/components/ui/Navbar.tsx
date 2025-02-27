@@ -1,73 +1,62 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { NavLink } from "react-router-dom";
-import clsx from "clsx";
+import { NavLink } from "react-router-dom"
+import clsx from "clsx"
+import { ConnectWalletButton } from "../ConnectWalletButton"
+
+const navbarItems = [
+  { label: "Home", path: "/" },
+  { label: "Mint", path: "/mint" },
+  { label: "Deposit", path: "/deposit" },
+  { label: "Swap", path: "/swap" },
+  { label: "Faucet", path: "/faucet" },
+]
 
 export const Navbar = () => {
   return (
-    <nav className="h-[100px] fixed w-full z-10 flex items-center bg-black text-white">
-      <div className="container mx-auto flex lg:justify-between justify-end items-center px-4">
-        <ul className="lg:flex hidden space-x-6">
-          <li>
-            <NavLink
-              to="/"
-              end
-              className={({ isActive }) =>
-                clsx(
-                  " hover:text-main font-bold",
-                  isActive ? "text-main" : "text-white"
-                )
-              }
-            >
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/mint"
-              end
-              className={({ isActive }) =>
-                clsx(
-                  " hover:text-main font-bold",
-                  isActive ? "text-main" : "text-white"
-                )
-              }
-            >
-              Mint
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/deposit"
-              end
-              className={({ isActive }) =>
-                clsx(
-                  " hover:text-main font-bold",
-                  isActive ? "text-main" : "text-white"
-                )
-              }
-            >
-              Deposit
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/swap"
-              end
-              className={({ isActive }) =>
-                clsx(
-                  " hover:text-main font-bold",
-                  isActive ? "text-main" : "text-white"
-                )
-              }
-            >
-              Swap
-            </NavLink>
-          </li>
+    <nav className="fixed z-10 w-full">
+      <div className="relative flex items-center px-8 py-6 justify-between  w-full">
+        <div className="flex items-center gap-2">
+          {/* <img src={NovariaLogo} className="size-7" /> */}
+          <h1 className="text-white text-xl tracking-wider">🐳 Novaria</h1>
+        </div>
+
+        {/* Centered UL List */}
+        <ul className="absolute left-1/2 transform -translate-x-1/2 lg:flex hidden space-x-8 text-lg">
+          {navbarItems.map((item) => (
+            <li className="relative group" key={item.label}>
+              <NavLink
+                to={item.path}
+                end
+                className={({ isActive }) =>
+                  clsx(
+                    "relative group-hover:text-teal-200",
+                    isActive
+                      ? "bg-gradient-to-tr from-teal-100 to-teal-200 font-semibold text-transparent bg-clip-text"
+                      : "text-teal-400"
+                  )
+                }>
+                {({ isActive }) => (
+                  <>
+                    <span
+                      className={clsx(
+                        "absolute -inset-0 text-teal-100 blur",
+                        isActive ? "block" : "hidden",
+                        "group-hover:block"
+                      )}>
+                      {item.label}
+                    </span>
+
+                    {item.label}
+                  </>
+                )}
+              </NavLink>
+            </li>
+          ))}
         </ul>
+
         <div>
-          <ConnectButton />
+          <ConnectWalletButton />
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}

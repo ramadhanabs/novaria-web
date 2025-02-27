@@ -1,28 +1,32 @@
 export const Home = () => {
   return (
     <>
-      <div className="h-screen flex items-center justify-center flex-col">
-        <div className="flex flex-col lg:items-center justify-center lg:w-[800px] text-center lg:space-y-14 space-y-6">
-          <h1 className="lg:text-6xl text-3xl text-blue-200 leading-tight px-4 lg:px-0">
-            Financial Stability Starts with Fixed Income Solutions
+      <div className="h-screen flex flex-col justify-center px-8">
+        <div className="mt-32 flex flex-col justify-center items-center md:w-[800px]">
+          <h1 className="text-4xl leading-tight text-blue-100 md:text-6xl md:text-center hover:animate-fadez">
+            Financial Stability Starts with{" "}
+            <span className="font-semibold bg-gradient-to-r from-blue-400 via-teal-500 via-60% to-blue-600 text-transparent bg-clip-text">
+              Fixed Income Solutions
+            </span>
           </h1>
-          <p className="lg:text-lg text-blue-100 px-4 lg:px-0">
+          <p className="text-sm mt-4 md:text-xl md:mt-8 md:text-center bg-gradient-to-r from-zinc-400 via-teal-300 via-60% to-zinc-400 text-transparent bg-clip-text">
             Harness the power of funding rates and blockchain technology to
             generate predictable, steady income streams. Our solutions are
             designed to bring stability to your crypto investments.
           </p>
         </div>
-        <div className="w-full">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:space-x-6 space-y-6 lg:space-y-0 px-4 lg:px-0 mt-10">
-            <button className="lg:w-80 w-full bg-main text-black py-2 rounded-lg lg:text-lg text-md font-bold">
+        <div className="flex flex-col mt-12 gap-5 md:flex-row md:w-[80%] md:mx-auto">
+          <div className="relative w-full md:w-1/2">
+            <span className="absolute inset-0 rounded-full bg-teal-400 opacity-50 group-hover:opacity-100 blur"></span>
+            <button className="relative w-full bg-gradient-to-r from-teal-400 via-teal-300  to-teal-400 text-teal-950 text-xl rounded-full py-2.5 px-12 font-bold cursor-pointer">
               Get Started
             </button>
-            <button className="lg:w-80 w-full bg-transparent border border-main text-blue-100 py-2 rounded-lg lg:text-lg text-md font-bold">
-              Learn More
-            </button>
           </div>
+          <button className="relative w-full md:w-1/2 bg-transparent text-teal-100  border-teal-100 border text-xl rounded-full py-2.5 px-12 font-bold cursor-pointer">
+            Learn More
+          </button>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
