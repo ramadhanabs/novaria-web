@@ -4,6 +4,7 @@ import FuelIcon from "@/components/icon/FuelIcon";
 import { Input, NovariaTokenLogo, WBTCTokenLogo } from "@/components/ui/Input";
 import mockErc20 from "@/data/mockERC20.json";
 import mockVault from "@/data/mockVault.json";
+import { FUNDING_VAULT_ADDRESS, MOCK_TOKEN_ADDRESS } from "@/utils/constants";
 import {
   useAccount,
   useWriteContract,
@@ -22,7 +23,7 @@ export const Mint = () => {
   const handleMint = () => {
     writeContract({
       abi: mockVault,
-      address: "0xfc7Ca268cc901753f44686834dA0A038eB61BAdd",
+      address: FUNDING_VAULT_ADDRESS,
       functionName: "deposit",
       args: [BigInt(100)],
     });
@@ -31,7 +32,7 @@ export const Mint = () => {
   const handleFaucet = () => {
     writeContract({
       abi: mockErc20,
-      address: "0xf1CeAFabFe0c541fe45Bcd2Ed391e8BE4105b66A",
+      address: MOCK_TOKEN_ADDRESS,
       functionName: "mint",
       args: [address, BigInt(1000e18)],
     });
@@ -40,9 +41,9 @@ export const Mint = () => {
   const handleApprove = () => {
     writeContract({
       abi: mockErc20,
-      address: "0xf1CeAFabFe0c541fe45Bcd2Ed391e8BE4105b66A",
+      address: MOCK_TOKEN_ADDRESS,
       functionName: "approve",
-      args: ["0xfc7Ca268cc901753f44686834dA0A038eB61BAdd", BigInt(100)],
+      args: [FUNDING_VAULT_ADDRESS, BigInt(100)],
     });
   };
 

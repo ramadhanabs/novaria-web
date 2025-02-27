@@ -5,6 +5,7 @@ import { Input, NovariaTokenLogo } from "@/components/ui/Input"
 import ArrowSwapIcon from "@/components/icon/ArrowSwapIcon"
 import ClockIcon from "@/components/icon/ClockIcon"
 import FuelIcon from "@/components/icon/FuelIcon"
+import { FUNDING_VAULT_ADDRESS, PRINCIPLE_TOKEN_ADDRESS } from "@/utils/constants"
 
 export const Deposit = () => {
   const { data: hash, isPending, writeContract } = useWriteContract()
@@ -16,7 +17,7 @@ export const Deposit = () => {
   const handleDeposit = () => {
     writeContract({
       abi: mockVault,
-      address: "0xB6Df7f56e1dFF4073FD557500719A37232fC3337",
+      address: PRINCIPLE_TOKEN_ADDRESS,
       functionName: "deposit",
       args: [BigInt(100)],
     })
@@ -25,9 +26,9 @@ export const Deposit = () => {
   const handleApprove = () => {
     writeContract({
       abi: mockErc20,
-      address: "0xfc7Ca268cc901753f44686834dA0A038eB61BAdd",
+      address: FUNDING_VAULT_ADDRESS,
       functionName: "approve",
-      args: ["0xB6Df7f56e1dFF4073FD557500719A37232fC3337", BigInt(100)],
+      args: [PRINCIPLE_TOKEN_ADDRESS, BigInt(100)],
     })
   }
 
