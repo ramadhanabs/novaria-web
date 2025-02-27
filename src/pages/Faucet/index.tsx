@@ -38,7 +38,7 @@ const Faucet = () => {
           </div>
 
           <button
-            className="border border-main/50 bg-main/10 px-4 py-2 rounded text-sm text-white cursor-pointer hover:border-main hover:bg-main/40 transition-all"
+            className="border border-main/50 bg-main/10 px-4 py-2 rounded-lg text-sm text-white cursor-pointer hover:border-main hover:bg-main/40 transition-all"
             onClick={handleFaucet}
           >
             Receive 1000 Mock WBTC
